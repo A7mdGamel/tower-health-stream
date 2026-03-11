@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+os.environ['PYFLINK_PYTHON'] = '/usr/bin/python3'
 
 # Operator mapping
 OPERATORS = {
