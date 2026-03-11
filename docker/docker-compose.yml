@@ -35,7 +35,9 @@ services:
       - kafka
 
   flink-jobmanager:
-    image: apache/flink:1.18-scala_2.12
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.flink
     container_name: flink-jobmanager
     ports:
       - "8081:8081"
@@ -44,16 +46,22 @@ services:
         jobmanager.rpc.address: flink-jobmanager
     command: jobmanager
     volumes:
-      - ./flink_jobs:/opt/flink/jobs
+      - ../flink_jobs:/opt/flink/jobs
+      - ../data:/opt/flink/jobs/data
 
   flink-taskmanager:
-    image: apache/flink:1.18-scala_2.12
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.flink
     container_name: flink-taskmanager
     environment:
       FLINK_PROPERTIES: |
         jobmanager.rpc.address: flink-jobmanager
         taskmanager.numberOfTaskSlots: 4
     command: taskmanager
+    volumes:
+      - ../flink_jobs:/opt/flink/jobs
+      - ../data:/opt/flink/jobs/data
     depends_on:
       - flink-jobmanager
 

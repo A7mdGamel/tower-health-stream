@@ -1,0 +1,21 @@
+FROM apache/flink:2.0.0
+
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Install essential dependencies for PyFlink and SQL API
+RUN pip3 install --no-cache-dir \
+    pandas \
+    ruamel.yaml
+
+ENV PYFLINK_PYTHON=/usr/bin/python3
+
+# Copy the SQL Connector JAR we downloaded
+COPY flink_jobs/jars/*.jar /opt/flink/lib/
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
