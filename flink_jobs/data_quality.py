@@ -24,13 +24,13 @@ t_env.execute_sql("""
         is_peak_hour    BOOLEAN,
         is_anomaly      BOOLEAN
     ) WITH (
-        'connector'                     = 'kafka',
-        'topic'                         = 'tower_events',
-        'properties.bootstrap.servers'  = 'kafka:29092',
-        'properties.group.id'           = 'quality-group',
-        'scan.startup.mode'             = 'earliest-offset',
-        'format'                        = 'json',
-        'json.ignore-parse-errors'      = 'true'
+        'connector'                    = 'kafka',
+        'topic'                        = 'tower_events',
+        'properties.bootstrap.servers' = 'kafka:29092',
+        'properties.group.id'          = 'quality-group',
+        'scan.startup.mode'            = 'latest-offset',
+        'format'                       = 'json',
+        'json.ignore-parse-errors'     = 'true'
     )
 """)
 
@@ -50,10 +50,10 @@ t_env.execute_sql("""
         is_peak_hour    BOOLEAN,
         is_anomaly      BOOLEAN
     ) WITH (
-        'connector'                     = 'kafka',
-        'topic'                         = 'anomalies',
-        'properties.bootstrap.servers'  = 'kafka:29092',
-        'format'                        = 'json'
+        'connector'                    = 'kafka',
+        'topic'                        = 'valid_events',
+        'properties.bootstrap.servers' = 'kafka:29092',
+        'format'                       = 'json'
     )
 """)
 
@@ -73,10 +73,10 @@ t_env.execute_sql("""
         is_peak_hour    BOOLEAN,
         is_anomaly      BOOLEAN
     ) WITH (
-        'connector'                     = 'kafka',
-        'topic'                         = 'dead_letter_queue',
-        'properties.bootstrap.servers'  = 'kafka:29092',
-        'format'                        = 'json'
+        'connector'                    = 'kafka',
+        'topic'                        = 'dead_letter_queue',
+        'properties.bootstrap.servers' = 'kafka:29092',
+        'format'                       = 'json'
     )
 """)
 
@@ -84,8 +84,7 @@ print("Job starting...")
 
 t_env.execute_sql("""
     INSERT INTO valid_events
-    SELECT *
-    FROM tower_events
+    SELECT * FROM tower_events
     WHERE signal_strength >= -120
       AND signal_strength <= 0
       AND latency_ms > 0
@@ -94,8 +93,7 @@ t_env.execute_sql("""
 
 t_env.execute_sql("""
     INSERT INTO dead_letter
-    SELECT *
-    FROM tower_events
+    SELECT * FROM tower_events
     WHERE signal_strength < -120
        OR signal_strength > 0
        OR latency_ms <= 0
