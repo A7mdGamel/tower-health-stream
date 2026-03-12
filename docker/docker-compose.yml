@@ -48,6 +48,7 @@ services:
     volumes:
       - ../flink_jobs:/opt/flink/jobs
       - ../data:/opt/flink/jobs/data
+      - iceberg_data:/opt/iceberg/warehouse
 
   flink-taskmanager:
     build:
@@ -62,8 +63,21 @@ services:
     volumes:
       - ../flink_jobs:/opt/flink/jobs
       - ../data:/opt/flink/jobs/data
+      - iceberg_data:/opt/iceberg/warehouse
     depends_on:
       - flink-jobmanager
 
+  iceberg-rest:
+    image: tabulario/iceberg-rest:latest
+    container_name: iceberg-rest
+    ports:
+      - "8182:8181"
+    environment:
+      CATALOG_WAREHOUSE: /opt/iceberg/warehouse
+      CATALOG_IO__IMPL: org.apache.iceberg.hadoop.HadoopFileIO
+    volumes:
+      - iceberg_data:/opt/iceberg/warehouse
+
 volumes:
   kafka_data:
+  iceberg_data:
