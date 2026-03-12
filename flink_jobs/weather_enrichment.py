@@ -41,6 +41,18 @@ def get_weather(lat, lon):
             "cloud_cover": None
         }
 
+def get_weather_impact(weather):
+    rain        = weather.get("rain") or 0
+    wind_speed  = weather.get("wind_speed") or 0
+    cloud_cover = weather.get("cloud_cover") or 0
+
+    if rain > 5 or wind_speed > 40:
+        return "HIGH"
+    elif rain > 1 or wind_speed > 20 or cloud_cover > 80:
+        return "MEDIUM"
+    else:
+        return "LOW"
+
 print("Weather enrichment started...")
 
 for msg in consumer:
@@ -50,8 +62,24 @@ for msg in consumer:
 
     if lat and lon:
         weather = get_weather(lat, lon)
+        weather["weather_impact"] = get_weather_impact(weather)
         alert["weather"] = weather
+
+        if weather["weather_impact"] == "LOW":
+            alert["conclusion"] = "Technical issue — not weather related"
+        elif weather["weather_impact"] == "MEDIUM":
+            alert["conclusion"] = "Weather may be a partial cause"
+        else:
+            alert["conclusion"] = "Weather is the main cause of the issue"
+
         producer.send('enriched_alerts', value=alert)
-        print(f"Enriched tower {alert.get('tower_id')} | temp={weather['temperature']}°C | wind={weather['wind_speed']}km/h")
+        print(
+            f"Tower {alert.get('tower_id')} | "
+            f"{alert.get('alert_type')} | "
+            f"temp={weather['temperature']}°C | "
+            f"wind={weather['wind_speed']}km/h | "
+            f"impact={weather['weather_impact']} | "
+            f"{alert['conclusion']}"
+        )
 
     time.sleep(0.1)
