@@ -349,16 +349,15 @@ tower-health-stream/
 
 ## License
 
-This project is open source. You are free to use, study, modify, and build upon it for any purpose (personal, academic, or commercial), subject to one condition:
+This project is licensed under the MIT License, see the [LICENSE](LICENSE) file for details.
 
-**Attribution is required.** Any use or derivative of this project must include clear and visible credit to the original author:
+## Attribution
 
-> This project is based on Tower Health Stream, originally created by Ahmed Gamel (github.com/A7mdGamel/tower-health-stream).
+If you use or build upon this project, attribution is highly appreciated:
 
-See the [LICENSE](LICENSE) file for full terms.
-
----
+> Based on Tower Health Stream by Ahmed Gamel  
+> https://github.com/A7mdGamel/tower-health-stream
 
 ## Author
 
-Ahmed Gamel — [github.com/A7mdGamel](https://github.com/A7mdGamel)
+Ahmed Gamel — https://github.com/A7mdGamel
