@@ -1,4 +1,5 @@
 # Tower Health Stream
+![Pipeline Demo](pipeline.gif)
 
 [![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-4.0.0-231F20?style=flat-square&logo=apachekafka&logoColor=white)](https://kafka.apache.org/)
 [![Apache Flink](https://img.shields.io/badge/Apache%20Flink-2.0.0-E6526F?style=flat-square&logo=apacheflink&logoColor=white)](https://flink.apache.org/)
