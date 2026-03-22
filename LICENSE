@@ -1,6 +1,6 @@
 MIT License with Attribution
 
-Copyright (c) 2026 Ahmed Waly (github.com/A7md-Waly)
+Copyright (c) 2026 Ahmed Gamel (github.com/A7mdGamel)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to use,
@@ -14,11 +14,11 @@ the following conditions:
    work that uses or is based on this Software must include a visible credit
    to the original author in one of the following forms:
 
-   In the README or documentation:
-     "Based on Tower Health Stream by Ahmed Waly (github.com/A7md-Waly)"
+   - In the README or documentation:
+     "Based on Tower Health Stream by Ahmed Gamel (github.com/A7mdGamel)"
 
-   In source code comments or file headers:
-     "Original project: https://github.com/A7md-Waly/tower-health-stream"
+   - In source code comments or headers:
+     "Original project: https://github.com/A7mdGamel/tower-health-stream"
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
