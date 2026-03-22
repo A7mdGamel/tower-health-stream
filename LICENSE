@@ -1,24 +1,16 @@
-MIT License with Attribution
+MIT License
 
-Copyright (c) 2026 Ahmed Gamel (github.com/A7mdGamel)
+Copyright (c) 2026 Ahmed Gamel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to use,
-study, copy, modify, merge, publish, and distribute the Software, subject to
-the following conditions:
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to do so, subject to the
+following conditions:
 
-1. The above copyright notice and this permission notice shall be included in
-   all copies or substantial portions of the Software.
-
-2. Attribution is required. Any project, product, publication, or derivative
-   work that uses or is based on this Software must include a visible credit
-   to the original author in one of the following forms:
-
-   - In the README or documentation:
-     "Based on Tower Health Stream by Ahmed Gamel (github.com/A7mdGamel)"
-
-   - In source code comments or headers:
-     "Original project: https://github.com/A7mdGamel/tower-health-stream"
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
